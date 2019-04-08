@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 const GET_EMPRESAS = gql`
   {
@@ -14,7 +14,9 @@ const GET_EMPRESAS = gql`
 
 
 class Empresa extends Component {
+         
   render() {
+
     return (
         <Query query={GET_EMPRESAS}>
             {({ loading, error, data }) => {
@@ -22,11 +24,13 @@ class Empresa extends Component {
                 if (error) return <p>Error :(</p>;
 
                 return (
+
                     <Table striped bordered hover>
                         <thead>
                             <tr>
                             <th>#</th>
                             <th>Nombre</th>
+                            <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +38,9 @@ class Empresa extends Component {
                             <tr key={empresa.id}>
                                 <td>{index+1}</td>
                                 <td>{empresa.nombre}</td>
+                                <td>
+                                    <Button variant="primary" onClick={this.onOpenModal}>Primary</Button>
+                                </td>
                             </tr>
 
                             
@@ -41,6 +48,7 @@ class Empresa extends Component {
                            
                         </tbody>
                     </Table>
+                    
                 )
             }}
         </Query>

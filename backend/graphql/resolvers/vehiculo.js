@@ -12,20 +12,12 @@ export default {
     },
     Mutation: {
         addVehiculo: async (parent, args) => {
-            let vehiculo = new vehiculoModel({ 
-                chapa: args.chapa ,
-                resposable: args.User,
-                tipoV: args.tipoV
-            });
+            let vehiculo = new vehiculoModel(args.input);
             return await vehiculo.save();
         },
         
         updateVehiculo: async (parent, args) => {
-            return await vehiculoModel.findByIdAndUpdate(args.id, { 
-                chapa: args.chapa ,
-                resposable: args.resposable,
-                tipoV: args.tipoV 
-            }, {new: true});
+            return await vehiculoModel.findByIdAndUpdate(args.id, args.input, {new: true});
         },
         
         deleteVehiculo: async (parent, args) => {

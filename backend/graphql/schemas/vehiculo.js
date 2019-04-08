@@ -5,8 +5,9 @@ export default gql`
     type Vehiculo {
         id:             String
         chapa:          String
-        responsable:    User
-        tipoV:          TipoV
+        indiceConsumo:  Int
+        responsable:    String!
+        tipoV:          String!
     }
 
     extend type Query {
@@ -15,23 +16,25 @@ export default gql`
             id : String
         ): Vehiculo
     }
+    input InputVehiculo {
+        indiceConsumo : Int
+        chapa: String
+        tipov: String
+        responsable: String
+    }
 
     extend type Mutation {
         addVehiculo(
-            chapa       : String
-            tipoV       : TipoV
-            responsable : User
+            input : InputVehiculo
         ):Vehiculo,
 
         updateVehiculo(
-            id          : String
-            chapa       : String
-            tipoV       : TipoV
-            responsable : User
+            id      : String!
+            input   : InputVehiculo
         ):Vehiculo,
         
         deleteVehiculo(
-            id      : String
+            id      : String!
         ):Vehiculo
     }
 `;

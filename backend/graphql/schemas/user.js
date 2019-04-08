@@ -16,22 +16,22 @@ export default gql`
         ): User
     }
 
+    input UserInput {
+        nombre  : String
+        user    : String
+        password: String
+    }
+
     extend type Mutation {
-        addUser(
-            nombre:     String
-            usuario:    String
-            password:   String
-        ):User,
+        addUser(input : UserInput):User,
 
         updateUser(
-            id    :     String,
-            nombre:     String
-            usuario:    String
-            password:   String
+            id      : String!,
+            input   : UserInput
         ):User,
         
         deleteUser(
-            id      : String
+            id      : String!
         ):User
     }
 `;

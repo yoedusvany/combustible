@@ -1,11 +1,11 @@
 import empresa from './empresa';
 import tipov from './tipov';
-import vehiculo from './vehiculo';
 import user from './user';
+import vehiculo from './vehiculo';
 
 export default [
     empresa,
     tipov,
-    //vehiculo,
-    //user
+    user,
+    vehiculo
 ]
